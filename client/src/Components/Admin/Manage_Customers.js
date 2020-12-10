@@ -123,7 +123,7 @@ return (
     <Menubar/>
         <div class="content-wrapper">
         <div class="page-content fade-in-up">
-        <Modal show={this.state.show} onHide={this.handleClose}>
+<Modal show={this.state.show} onHide={this.handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Customer Record</Modal.Title>
         </Modal.Header>

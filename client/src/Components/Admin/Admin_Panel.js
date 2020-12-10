@@ -11,16 +11,18 @@ export default class Admin_Panel extends Component {
         redirect:null,
         atotal:null,
         ptotal:null,
-        utotal:null
+        utotal:null,
+        reveneu_total:[]
     }
     componentDidMount(){
         axios.get('/get_count_data')
         .then(res=>{
-            console.log(res.data)
+            console.log(res.data.reveneu_total)
             this.setState({
                 atotal:res.data.atotal,
                 ptotal:res.data.ptotal,
-                utotal:res.data.utotal
+                utotal:res.data.utotal,
+                reveneu_total:res.data.reveneu_total
             })
         })
     }
@@ -40,7 +42,7 @@ return (
     <Menubar/>
         <div class="content-wrapper">
             <div class="page-content fade-in-up">
-             <Main_Content atotal={this.state.atotal} ptotal={this.state.ptotal} utotal={this.state.utotal}/>
+             <Main_Content atotal={this.state.atotal} ptotal={this.state.ptotal} utotal={this.state.utotal} rev_total={this.state.reveneu_total}/>
              </div>
            <Footer/>
         </div>

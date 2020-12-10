@@ -35,9 +35,15 @@ export default class Main_Content extends Component {
                     <div class="col-lg-3 col-md-6">
                         <div class="ibox bg-danger color-white widget-stat">
                             <div class="ibox-body">
-                                <h2 class="m-b-5 font-strong">$0.00</h2>
+        <h2 class="m-b-5 font-strong">${
+        
+        this.props.rev_total.map((data,index)=>(
+            <span>{data.TotalAmount}</span>
+            ))
+        
+        }</h2>
                                 <div class="m-b-5">TOTAL REVENEU</div><i class="ti-money widget-stat-icon"></i>
-                                <div><a href="/reveneu" style={{color:'white'}}><i class="fa fa-info-circle m-r-5"></i><small>View Info</small></a></div>
+                                <div><a href="/total_reveneu" style={{color:'white'}}><i class="fa fa-info-circle m-r-5"></i><small>View Info</small></a></div>
                             </div>
                         </div>
                     </div>

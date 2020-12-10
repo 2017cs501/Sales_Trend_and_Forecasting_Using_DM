@@ -3,6 +3,7 @@ import MainPage from './Users/MainPage'
 import Login from './Users/Login'
 import Admin from './Admin/AdminLogin'
 import Signup from './Users/Signup'
+import Total_Reveneu from './Admin/Total_Reveneu'
 import ResetPassword from './Users/ResetPassword'
 import {BrowserRouter as Router,Route,Switch} from 'react-router-dom'
 import ResetAdminPassword from './Admin/ResetAdminPassword'
@@ -40,6 +41,7 @@ export default class Root extends Component {
 
                     {/* For Admin Routes */}
                     
+                    <Route path="/total_reveneu" exact><Total_Reveneu/></Route>
                     <Route path="/admin" exact><Admin/></Route>
                     <Route path="/add_new_admin" exact><Add_New_Admin/></Route>
                     <Route path="/admin_panel" exact><Admin_Panel/></Route>

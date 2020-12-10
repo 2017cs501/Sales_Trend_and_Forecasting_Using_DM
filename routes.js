@@ -6,7 +6,7 @@ var jwt=require('jsonwebtoken')
 mongoose.connect(mongourl,{useNewUrlParser:true,useUnifiedTopology: true});
 
 //Models Imports
-
+var Reveneu_Model=require('./models/Reveneu')
 var UserRegistrationModel=require('./models/UserRegistration')
 var AdminRegistration=require('./models/AdminRegistration')
 var Plan_Model=require('./models/Add_Plan')
@@ -60,6 +60,33 @@ app.post('/update_plan',(req,res)=>{
         })
     })
 })
+
+app.post('/payment',(req,res)=>{
+    var token=req.headers.token;
+    var cat=req.body.cat;
+    var decoded = jwt.verify(token, 'jwtPrivateKey');
+    const Reveneu_Data=new Reveneu_Model({
+        user_id:decoded._id,
+        card_number:req.body.card_number,
+        expiry_date:req.body.expiry,
+        cvv:req.body.cvv,
+        amount:req.body.amount,
+        upgraded_package_name:req.body.cat
+    })
+  
+    UserRegistrationModel.updateOne({_id:decoded._id},{$set:{category:cat}})
+    .then(data=>{
+        Reveneu_Data.save((err,res1)=>{
+            if(err) throw err;
+            console.log("Success Amount")
+            res.send({
+                data:data
+            })
+        })
+
+    })
+})
+
 app.post('/update_customer',(req,res)=>{
     UserRegistrationModel.updateOne({_id:req.body.id},{$set:{fname:req.body.ufname,lname:req.body.ulname,uname:req.body.uuname,email:req.body.uemail,phone:req.body.uphone,password:req.body.upassword}})
     .then(data=>{
@@ -201,6 +228,14 @@ app.get('/all_custumers_info',(req,res)=>{
         res.send(data);
     })
 })
+
+app.get('/all_reveneu_info',(req,res)=>{
+    Reveneu_Model.find({})
+     .then(data=>{
+         res.send(data);
+     })
+ })
+
 app.get('/get_plan_data/:id',(req,res)=>{
     Plan_Model.findOne({_id:req.params.id})
     .then(data=>{
@@ -214,7 +249,19 @@ app.get('/get_count_data',(req,res)=>{
     .then(data1=>{
     UserRegistrationModel.countDocuments({})
     .then(data2=>{
-        res.send({atotal:data,ptotal:data1,utotal:data2})
+        Reveneu_Model.aggregate([ {
+            $group: {
+             _id: null,
+             "TotalAmount": {
+             $sum: "$amount"
+              }
+             }
+          } ] )
+          .then(data3=>{
+              console.log(data3)
+              res.send({atotal:data,ptotal:data1,utotal:data2,reveneu_total:data3})
+          })
+     
     })
     })    
     })
@@ -261,6 +308,7 @@ app.post('/admin_login',(req,res)=>{
         })
     })
     })
+    
 app.post('/login',(req,res)=>{
      var user=new UserRegistrationModel({
          email:req.body.email,

@@ -168,7 +168,12 @@ export default class Menubar extends Component {
                         <span class="nav-label">Manage Notifications<span class="badge badge-light envelope-badge" style={{color:'black'}}>5</span></span>
                         </Link>
                     </li> */}
-                    
+                     <li>
+                        <a href="/total_reveneu">
+                        <i class="sidebar-item-icon fa fa-money"></i>
+                        <span class="nav-label">Total Reveneu</span>
+                        </a>
+                    </li>
                     <li>
                         <a href="/admin_profile">
                         <i class="sidebar-item-icon fa fa-user-o"></i>
