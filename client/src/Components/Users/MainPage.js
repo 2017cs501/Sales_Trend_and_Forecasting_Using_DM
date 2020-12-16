@@ -74,14 +74,18 @@ data mining techniques.
             <div class="icon-box">
               <div class="icon"><i class="bx bxs-analyse"></i></div>
               <h4><a href="#">Sales Forecasting</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <p style={{textAlign:"justify"}}>
+              Sales forecasting is the process of estimating future sales. Accurate sales forecasts enable companies to make informed business decisions and predict short-term and long-term performance.
+              </p>
             </div>
           </div>
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="bx bx-basket"></i></div>
               <h4><a href="#">Market Basket</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <p style={{textAlign:"justify"}}>
+              Market Basket Analysis is one of the key techniques used by large retailers to uncover associations between items. It works by looking for combinations of items that occur together frequently in transactions.
+              </p>
             </div>
           </div>
 
@@ -89,7 +93,9 @@ data mining techniques.
             <div class="icon-box">
               <div class="icon"><i class="bx bx-shape-polygon"></i></div>
               <h4><a href="#">Churn Analysis</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
+              <p style={{textAlign:"justify"}}>
+              Churn analysis is the evaluation of a company's customer loss rate in order to reduce it. Also referred to as customer attrition rate, churn can be minimized by assessing your product and how people use it. 
+              </p>
             </div>
           </div>
 
@@ -97,17 +103,33 @@ data mining techniques.
             <div class="icon-box">
               <div class="icon"><i class="bx bx-donate-blood "></i></div>
               <h4><a href="#">Uplift Modeling</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
+              <p style={{textAlign:"justify"}}>Uplift modelling, also known as incremental modelling, true lift modelling, or net modelling is a predictive modelling technique that directly models the incremental impact of a treatment on an individual's behaviour.</p>
             </div>
           </div>
 
         </div>
         <div class="row" style={{marginTop:'20px'}}>
+        <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-layer"></i></div>
+              <h4><a href="#">Sales Trend Analysis</a></h4>
+              <p style={{textAlign:"justify"}}>Sales Trend Analysis looks at historical revenue data to identify patterns, used extensively in budgeting and forecasting. It is a useful method to detect short-term changes in revenue growth.</p>
+            </div>
+          </div>
+          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-tachometer"></i></div>
+              <h4><a href="#">Market Responce Modeling</a></h4>
+              <p style={{textAlign:"justify"}}>Market response models are intended to help scholars and managers understand how consumers individually and collectively respond to marketing activities, and how competitors interact.</p>
+            </div>
+          </div>
+
+
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="bx bxl-dribbble"></i></div>
               <h4><a href="#">RFM Segmentation</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+              <p style={{textAlign:"justify"}}>Recency, frequency, monetary value is a marketing analysis tool used to identify a company's or an organization's best customers by using certain measures. </p>
             </div>
           </div>
 
@@ -115,25 +137,11 @@ data mining techniques.
             <div class="icon-box">
               <div class="icon"><i class="bx bx-body"></i></div>
               <h4><a href="#">Customer Lifetime Modeling</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
+              <p style={{textAlign:"justify"}}>In marketing, customer lifetime value, lifetime customer value (LCV), or life-time value (LTV) is a prognostication of the net profit contributed to the whole future relationship with a customer.</p>
             </div>
           </div>
 
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="#">Market Responce Modeling</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-layer"></i></div>
-              <h4><a href="#">Sales Trend Analysis</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
+                    
 
         </div>
 
@@ -153,7 +161,7 @@ data mining techniques.
               <div class="pic"><img src="assets/img/team/team-1.jpeg" class="img-fluid" alt=""/></div>
               <div class="member-info">
                 <h4>Arslan Serwar</h4>
-                <span>Project Leader</span>
+                <span>Project Member</span>
                 <p>Python Application Development</p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>
@@ -184,7 +192,7 @@ data mining techniques.
 
           <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="300">
-              <div class="pic"><img src="assets/img/team/team-3.JPG" class="img-fluid" alt=""/></div>
+              <div class="pic"><img src="assets/img/team/team-3.jpeg" class="img-fluid" alt=""/></div>
               <div class="member-info">
                 <h4>Bilal Mahais</h4>
                 <span>Project Member</span>
@@ -202,11 +210,11 @@ data mining techniques.
           <div class="col-lg-6 mt-4">
             <div class="member d-flex align-items-start" data-aos="zoom-in" data-aos-delay="400">
               <div class="pic">
-                  <img src="assets/img/team/team-4.jpg" height="300px" class="img-fluid" alt=""/>
+                  <img src="assets/img/team/team-4.jpeg" height="300px" class="img-fluid" alt=""/>
               </div>
               <div class="member-info">
                 <h4>Afzaal Javaid</h4>
-                <span>Project Member</span>
+                <span>Project Leader</span>
                 <p>React.js Front End Developer</p>
                 <div class="social">
                   <a href=""><i class="ri-twitter-fill"></i></a>

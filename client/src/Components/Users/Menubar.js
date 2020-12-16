@@ -65,7 +65,7 @@ export default class Menubar extends Component {
                     <img src={process.env.PUBLIC_URL+"dist/assets/img/admin-avatar.png"} width="45px"/>
                     </div>                    
                     <div class="admin-info">
-                    <div class="font-strong">{this.state.records.uname}</div><small>Administrator</small></div>
+                    <div class="font-strong">{this.state.records.uname}</div><small>User Panel</small></div>
                 </div>
                 <ul class="side-menu metismenu">
                     <li>
@@ -78,6 +78,10 @@ export default class Menubar extends Component {
                     <li>
                         <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-cubes"></i>
                             <span class="nav-label">Manage Pachages</span></Link>
+                    </li>
+                    <li>
+                        <Link to="/upload_data"><i class="sidebar-item-icon fa fa-upload"></i>
+                            <span class="nav-label">Upload Data</span></Link>
                     </li>
                     <li>
                         <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-tree"></i>

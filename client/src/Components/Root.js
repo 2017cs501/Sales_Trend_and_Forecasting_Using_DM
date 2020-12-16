@@ -20,6 +20,7 @@ import Manage_Plans from './Admin/Manage_Plans'
 import User_Panel from './Users/User_Panel'
 import User_Profile from './Users/User_Profile'
 import User_Manage_Packages from './Users/User_Manage_Packages'
+import Upload_Data from './Users/Upload_Data'
 
 export default class Root extends Component {
     render() {
@@ -38,6 +39,7 @@ export default class Root extends Component {
                     <Route path="/user_panel" exact><User_Panel/></Route>
                     <Route path="/user_profile" exact><User_Profile/></Route>
                     <Route path="/user_manage_packages" exact><User_Manage_Packages/></Route>
+                    <Route path="/upload_data" exact><Upload_Data/></Route>
 
                     {/* For Admin Routes */}
                     

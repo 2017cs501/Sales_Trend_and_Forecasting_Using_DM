@@ -42,12 +42,12 @@ export default class Main_Content extends Component {
             ))
         
         }</h2>
-                                <div class="m-b-5">TOTAL REVENEU</div><i class="ti-money widget-stat-icon"></i>
-                                <div><a href="/total_reveneu" style={{color:'white'}}><i class="fa fa-info-circle m-r-5"></i><small>View Info</small></a></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div class="m-b-5">TOTAL REVENEU</div><i class="ti-money widget-stat-icon"></i>
+            <div><a href="/total_reveneu" style={{color:'white'}}><i class="fa fa-info-circle m-r-5"></i><small>View Info</small></a></div>
+        </div>
+        </div>
+        </div>
+            </div>
                 <div class="row">
                     <div class="col-lg-8">
                         <div class="ibox">

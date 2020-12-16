@@ -18,7 +18,10 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.1",
     "react-bootstrap-sweetalert": "^5.2.0",
+    "react-loading-skeleton": "^2.1.1",
     "react-stripe-checkout": "^2.6.3",
+    "react-toastify": "^6.2.0",
+    "reactstrap": "^8.7.1",
     "sweetalert": "^2.1.2"
   }
 }
