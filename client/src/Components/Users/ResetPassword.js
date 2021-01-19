@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from './Navbar'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 export default class ResetPassword extends Component {
     state={
         email:''
@@ -10,16 +11,24 @@ export default class ResetPassword extends Component {
             [e.target.name]:e.target.value
         })
     }
+    
     formSubmit=(e)=>{
-        e.preventDefault();
+        e.preventDefault()
+        axios.post('/password_reset',this.state)
+        .then(data=>{
+            alert(data.data.data)
+            console.log(data.data.data)
+        })           
     }
+
+
     render() {
     return (
     <div>
       <Navbar/>
       <section style={{marginTop:'-50px',backgroundColor:'#37517e'}}>
     <div class="registration-form">
-        <form onSubmit={(e)=>this.formSubmit(e)}>
+        <form onSubmit={this.formSubmit}>
         <div class="form-group" style={{textAlign:'center',color:'#37517E',paddingBottom:'20px'}}>
             <h2>Customer Reset Password Form</h2>
             <p style={{paddingLeft:'20px',paddingRight:'20px'}}>Please enter email address that you use on the time of registration on this website</p>

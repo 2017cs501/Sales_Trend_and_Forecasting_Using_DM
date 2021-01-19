@@ -139,6 +139,22 @@ app.get('/get-data',(req,res)=>{
      })
  })
 
+ app.post('/password_reset',(req,res)=>{
+    console.log(req.body.email)
+    UserRegistrationModel.findOne({email:req.body.email})
+    .then((data)=>{
+        if(data)
+        {
+            res.send({data:'please check your email to reset your password'})
+            // res.send({message:'please check your email to reset your password'});
+        }
+        else
+        {
+            res.send({data:'This email not exists in out database.'})
+        }
+    })
+})
+
 app.post('/update_plan',(req,res)=>{
     Plan_Model.updateOne({_id:req.body.id},{$set:{pname:req.body.ppname,pprice:req.body.ppprice}})
 })

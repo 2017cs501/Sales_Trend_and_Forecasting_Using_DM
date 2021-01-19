@@ -8,7 +8,7 @@
     "client": "cd client && npm start",
     "dev": "concurrently \"nodemon index\" \"npm run client\""
   },
-  "author": "mukesh phulwani",
+  "author": "afzaal javaid",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
