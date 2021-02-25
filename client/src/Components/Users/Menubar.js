@@ -29,7 +29,7 @@ export default class Menubar extends Component {
             return <Redirect to="/login"/>
         }
         return (
-            <div>
+    <div>
         <header class="header">
             <div class="page-brand">
                 <Link class="link" to="/user_panel">
@@ -83,24 +83,76 @@ export default class Menubar extends Component {
                         <Link to="/upload_data"><i class="sidebar-item-icon fa fa-upload"></i>
                             <span class="nav-label">Upload Data</span></Link>
                     </li>
+                    <li class="heading"><span style={{textTransform:'uppercase'}}>{this.state.records.category}</span> PREDICTIONS</li>
+                    {this.state.records.category=='Free'?
+                    <>
                     <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-tree"></i>
-                            <span class="nav-label">{this.state.records.category}</span></Link>
+                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
+                            <span class="nav-label">Sales Forecasting</span></Link>
+                    </li>
+                    <li>
+                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
+                            <span class="nav-label">Market Basket Analysis</span></Link>
+                    </li>
+                    </>
+                    :''}
+                    {this.state.records.category=='Standard'?
+                    <>
+                    <li>
+                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
+                            <span class="nav-label">Sales Forecasting</span></Link>
                     </li>
                     <li>
                         <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
                             <span class="nav-label">Market Basket Analysis</span></Link>
                     </li>
                     <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-balance-scale"></i>
-                        <span class="nav-label">Market Basket Analysis</span></Link>
+                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-puzzle-piece"></i>
+                            <span class="nav-label">RFM Segmentation</span></Link>
                     </li>
                     <li>
-                        <Link to="/user_profile">
-                        <i class="sidebar-item-icon fa fa-user-o"></i>
-                        <span class="nav-label">My Profile</span>
-                        </Link>
+                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-heartbeat"></i>
+                            <span class="nav-label">Customer Lifetime Value
+                        </span></Link>
                     </li>
+                    </>:''}
+                    {this.state.records.category=='Premium'?
+                    <>
+                    <li>
+                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
+                            <span class="nav-label">Sales Forecasting</span></Link>
+                    </li>
+                    <li>
+                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
+                        <span class="nav-label">Market Basket Analysis</span></Link>
+                </li>
+                <li>
+                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-puzzle-piece"></i>
+                        <span class="nav-label">RFM Segmentation</span></Link>
+                </li>
+                <li>
+                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-heartbeat"></i>
+                        <span class="nav-label">Customer Lifetime Value
+                    </span></Link>
+                </li>
+                <li>
+                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-fast-backward"></i>
+                        <span class="nav-label">Churn Analysis
+                    </span></Link>
+                </li>
+                <li>
+                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-gift"></i>
+                        <span class="nav-label">Responce Modeling
+                    </span></Link>
+                </li>
+                <li>
+                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-arrow-up"></i>
+                        <span class="nav-label">Uplift Modeling
+                    </span></Link>
+                </li>
+                </>
+                    :''}
+                     <li class="heading">SETTINGS</li>
                     <li>
                         <Link to='/login' onClick={this.logOut}>
                         <i class="sidebar-item-icon fa fa-sign-out"></i>

@@ -97,12 +97,12 @@ class Upload_Data extends Component {
       <div className="custom-file">
         <input type="file" name="file" onChange={()=>this.onChangeHandler} accept=".csv" required/>
         <div className="form-group mt-2">
-        <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
+        <Progress max="100" color="success" value={this.state.loaded}>{Math.round(this.state.loaded,2) }%</Progress>
         </div>
       </div>
   </div>
   <div class="card-footer">
-  <button type="submit" className={'btn btn-primary btn-lg'} onClick={this.onClickHandler}>Upload Data </button>
+  <button type="submit" className={'btn btn-primary btn-lg'} onClick={this.onClickHandler}>Upload Data</button>
   {this.state.buffering?  
   <img className={styles.loader} src={buffering} alt=""/>:null
   }
