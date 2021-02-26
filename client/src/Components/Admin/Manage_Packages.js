@@ -42,7 +42,7 @@ export default class Manage_Packages extends Component {
     <>
     <body class="fixed-navbar">
     <div class="page-wrapper">
-    <Menubar/>
+    <Menubar name="MP"/>
     <div class="content-wrapper">
         <div class="page-content fade-in-up">
         <section id="pricing" class="pricing">

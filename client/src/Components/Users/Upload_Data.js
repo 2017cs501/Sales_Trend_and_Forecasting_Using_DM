@@ -23,38 +23,39 @@ class Upload_Data extends Component {
             buffering: false
         }
     }
-    onClickHandler = () => {   
+    onClickHandler = (e) => {
+        e.preventDefault();   
         this.setState({
             buffering:true
         })
         const form = new FormData();
         form.append("file", this.state.selectedFile);
-        axios.post('/api/upload',form, {headers: {token: Cookies.get('token')}}, {
-                onUploadProgress: ProgressEvent => {
-                this.setState({
-                    loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-                })
-            }, 
-        })
-        .then(response=>{
-            console.log(response)
-        }).then(res => { 
-            toast.success('upload success')
-            this.setState({
-                buffering:false
-            })
-        })
-        .catch(err => { 
-            toast.error('upload fail')
-            this.setState({
-                buffering:false
-            })
-        })
+        axios.post('/upload_data',form, {headers: {token: Cookies.get('token')}}
+        //, {
+        //         onUploadProgress: ProgressEvent => {
+        //         this.setState({
+        //             loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+        //         })
+        //     }, 
+         )
+        // .then(response=>{
+        //     console.log(response)
+        // }).then(res => { 
+        //     toast.success('upload success')
+        //     this.setState({
+        //         buffering:false
+        //     })
+        // })
+        // .catch(err => { 
+        //     toast.error('upload fail')
+        //     this.setState({
+        //         buffering:false
+        //     })
+        // })
     }
     onChangeHandler = (e)=>{
         this.setState({
-            selectedFile: e.target.files[0],
-            loaded: 0
+            selectedFile: e.target.files[0]
           })
     
     }
@@ -80,22 +81,23 @@ class Upload_Data extends Component {
         return <Redirect to="/login"/>
     }
     return(
-<body class="fixed-navbar">
+  <body class="fixed-navbar">
     <div class="page-wrapper">
-    <Menubar/>
- <div class="content-wrapper">
-            <div class="page-content fade-in-up">
-            <div> 
+    <Menubar name="UD"/>
+  <div class="content-wrapper">
+  <div class="page-content fade-in-up">
+  <div> 
   <div className={'row'} style={{marginTop:'20px'}}> 
   <div className={'col-2'}></div>
   <div className={'col-8'}>
- <form>
+
+ <form onSubmit={(e)=>this.onClickHandler}>
   <div class="card">
   <div class="card-header"> 
   <div className={styles.first_heading}>Upload your data in .csv format</div></div>
   <div class="card-body">
       <div className="custom-file">
-        <input type="file" name="file" onChange={()=>this.onChangeHandler} accept=".csv" required/>
+        <input type="file" name="file" onChange={()=>this.onChangeHandler} required/>
         <div className="form-group mt-2">
         <Progress max="100" color="success" value={this.state.loaded}>{Math.round(this.state.loaded,2) }%</Progress>
         </div>
@@ -103,16 +105,18 @@ class Upload_Data extends Component {
   </div>
   <div class="card-footer">
   <button type="submit" className={'btn btn-primary btn-lg'} onClick={this.onClickHandler}>Upload Data</button>
-  {this.state.buffering?  
-  <img className={styles.loader} src={buffering} alt=""/>:null
+  {
+  this.state.buffering?  
+  <img className={styles.loader} src={buffering} alt="Buffering"/>:null
   }
-   { this.state.uploaded == true &&
+   {/* { this.state.uploaded == true &&
                     <div className="alert alert-success mt-4" role="alert">
                         We have stored your data
-                    </div>}
+                    </div>} */}
   </div>
   </div>
   </form>
+
 
   </div>
   <div className={'col-2'}></div>

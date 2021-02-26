@@ -11,6 +11,10 @@ var UserRegistrationModel=require('./models/UserRegistration')
 var AdminRegistration=require('./models/AdminRegistration')
 var Plan_Model=require('./models/Add_Plan')
 var Action_Model=require('./models/Add_Action')
+var multer = require('multer')
+var fs = require('fs');
+var path=require('path')
+
 //End Model Imports
 
 module.exports = (app)=>{
@@ -348,6 +352,60 @@ app.post('/login',(req,res)=>{
         })
      })
     
+ })
+let userID ;
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        var ext = path.extname(file.originalname);
+        if(ext !== '.csv' ) {
+            return cb(new Error('Only csv are allowed'))
+        }
+        cb(null, 'public')
+  },
+  filename: function (req, file, cb) {
+    cb(null,  userID +'.csv');  
+  }
+});
+var upload = multer({ storage: storage,  limits: { fileSize: 100 * 1024 * 1024   } }).single('file');
+
+ app.post('/upload_data',(req,res)=>{
+     console.log('Upload Data Body')
+     var token=req.headers.token
+     var decoded=jwt.verify(token, 'jwtPrivateKey')
+     UserRegistrationModel.findOne({_id:decoded._id})
+     .then(data=>{
+         if(data)
+         {
+            console.log('data found')
+            userID=data._id;
+            // upload(req, res, function (err) {
+            //     if (err instanceof multer.MulterError) {
+            //         return res.status(500).json(err)
+            //     }
+            
+            //     else if (!req.file) {
+            //         return res.status(500).json(err)
+            //     }
+            //     else if (err) {
+            //          return res.status(500).json(err)
+            //      }
+      var dir = `\\excel_files\\${userID}`;
+      if (!fs.existsSync(__dirname+dir)){
+          fs.mkdirSync(__dirname+dir);
+        }
+            
+        // Customer.updateOne({_id:userID},{DataUploaded: true },function(err, res) {
+            //     if (err) {
+            //         throw err
+            //         console.log(err);
+            //     }   
+            // });
+           //return res.status(200).send(req.file)
+        
+        // });
+         }
+     })
+
  })
  app.post('/sent-data',(req,res)=>{
      var usersData=new UsersModel({

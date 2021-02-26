@@ -21,6 +21,13 @@ import User_Panel from './Users/User_Panel'
 import User_Profile from './Users/User_Profile'
 import User_Manage_Packages from './Users/User_Manage_Packages'
 import Upload_Data from './Users/Upload_Data'
+import Churn_Analysis from './Users/Predictions/Churn_Analysis'
+import Sales_Forecasting from './Users/Predictions/Sales_Forecasting'
+import Market_Basket from './Users/Predictions/Market_Basket'
+import RFM_Segmentation from './Users/Predictions/RFM_Segmentation'
+import LTV_Prediction from './Users/Predictions/LTV_Prediction'
+import Responce_Modeling from './Users/Predictions/Responce_Modeling'
+import Uplift_Modeling from './Users/Predictions/Uplift_Modeling'
 
 export default class Root extends Component {
     render() {
@@ -40,6 +47,13 @@ export default class Root extends Component {
                     <Route path="/user_profile" exact><User_Profile/></Route>
                     <Route path="/user_manage_packages" exact><User_Manage_Packages/></Route>
                     <Route path="/upload_data" exact><Upload_Data/></Route>
+                    <Route path="/sales_forecasting" exact><Sales_Forecasting/> </Route>
+                    <Route path="/market_basket_analysis" exact><Market_Basket/></Route>
+                    <Route path="/rfm_segmentation" exact><RFM_Segmentation/></Route>
+                    <Route path="/lifetime_value_prediction" exact><LTV_Prediction/></Route>
+                    <Route path="/churn_analysis" exact><Churn_Analysis/></Route>
+                    <Route path="/market_responce_modeling" exact><Responce_Modeling/></Route>
+                    <Route path="/uplift_modeling" exact><Uplift_Modeling/></Route>
 
                     {/* For Admin Routes */}
                     
@@ -54,7 +68,6 @@ export default class Root extends Component {
                     <Route path="/manage_plans" exact><Manage_Plans/></Route>
                     <Route path="/messages" exact><Messages/></Route>
                     <Route path="/notifications" exact><Notifications/></Route>
-                    
                 </Switch>
             </Router>  
             </>

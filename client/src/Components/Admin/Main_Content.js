@@ -38,7 +38,7 @@ export default class Main_Content extends Component {
         <h2 class="m-b-5 font-strong">${
         
         this.props.rev_total.map((data,index)=>(
-            <span>{data.TotalAmount}</span>
+            <span>{(data.TotalAmount).toFixed(2)}</span>
             ))
         
         }</h2>

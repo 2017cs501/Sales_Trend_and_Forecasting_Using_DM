@@ -140,20 +140,20 @@ export default class Menubar extends Component {
                         </ul>
                     </li> */}
                     <li>    
-                        <a href="manage_plans"><i class="sidebar-item-icon fa fa-dollar"></i>
+                        <a class={this.props.name==='MPL'?'active':''} href="manage_plans"><i class="sidebar-item-icon fa fa-dollar"></i>
                         <span class="nav-label">Manage Plans</span></a>
                     </li>
                     <li>
-                        <a href="manage_actions"><i class="sidebar-item-icon fa fa-cubes"></i>
+                        <a class={this.props.name==='MA'?'active':''} href="manage_actions"><i class="sidebar-item-icon fa fa-cubes"></i>
                             <span class="nav-label">Manage Actions</span>
                         </a>
                     </li>
                     <li>    
-                        <a href="manage_customers"><i class="sidebar-item-icon fa fa-users"></i>
+                        <a class={this.props.name==='MC'?'active':''} href="manage_customers"><i class="sidebar-item-icon fa fa-users"></i>
                             <span class="nav-label">Manage Customers</span></a>
                     </li>
                     <li>    
-                        <a href="manage_packages"><i class="sidebar-item-icon fa fa-bookmark"></i>
+                        <a class={this.props.name==='MP'?'active':''} href="manage_packages"><i class="sidebar-item-icon fa fa-bookmark"></i>
                             <span class="nav-label">Manage Packages</span></a>
                     </li>
                     {/* <li>
@@ -169,13 +169,13 @@ export default class Menubar extends Component {
                         </Link>
                     </li> */}
                      <li>
-                        <a href="/total_reveneu">
+                        <a class={this.props.name==='TR'?'active':''} href="/total_reveneu">
                         <i class="sidebar-item-icon fa fa-money"></i>
                         <span class="nav-label">Total Reveneu</span>
                         </a>
                     </li>
                     <li>
-                        <a href="/admin_profile">
+                        <a class={this.props.name==='PRO'?'active':''} href="/admin_profile">
                         <i class="sidebar-item-icon fa fa-user-o"></i>
                         <span class="nav-label">My Profile</span>
                         </a>

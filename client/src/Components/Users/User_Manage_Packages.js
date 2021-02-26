@@ -108,7 +108,7 @@ export default class User_Manage_Packages extends Component {
     <>
     <body class="fixed-navbar">
     <div class="page-wrapper">
-    <Menubar/>
+    <Menubar name="PACK"/>
     <div class="content-wrapper">
         <div class="page-content fade-in-up">
         <Modal show={this.state.show} onHide={this.handleClose}>

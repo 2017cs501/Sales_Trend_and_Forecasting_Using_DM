@@ -120,7 +120,7 @@ export default class Manage_Customers extends Component {
 return (
 <body class="fixed-navbar">
     <div class="page-wrapper">
-    <Menubar/>
+    <Menubar name="MC"/>
         <div class="content-wrapper">
         <div class="page-content fade-in-up">
 <Modal show={this.state.show} onHide={this.handleClose}>

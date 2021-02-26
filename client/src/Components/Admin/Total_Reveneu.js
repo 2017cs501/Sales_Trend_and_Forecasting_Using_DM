@@ -45,16 +45,16 @@ export default class Total_Reveneu extends Component {
 return (
 <body class="fixed-navbar">
     <div class="page-wrapper">
-    <Menubar/>
+    <Menubar name="TR"/>
         <div class="content-wrapper">
         <div class="page-content fade-in-up">
         <h2 style={{padding:"10px"}} class="text-center">All Customers Reveneu Table</h2>
         
-        <h2 class="text-center" style={{paddingBottom:'10px'}}>Total Reveneu: $<b><u class="text-danger">
+        <h2 class="text-center" style={{paddingBottom:'10px'}}>Total Reveneu: $ <b><u class="text-danger">
         {
         
         this.state.reveneu_total.map((data,index)=>(
-            <span>{data.TotalAmount}</span>
+            <span>{(data.TotalAmount).toFixed(2)}</span>
             ))
         
         }

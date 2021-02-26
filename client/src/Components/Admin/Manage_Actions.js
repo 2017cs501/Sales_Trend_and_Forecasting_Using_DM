@@ -113,7 +113,7 @@ export default class Manage_Actions extends Component {
     <>
     <body class="fixed-navbar">
       <div class="page-wrapper">
-       <Menubar/>
+       <Menubar name="MA"/>
        <div class="content-wrapper">
        <div class="page-content fade-in-up">
        <Modal show={this.state.show} onHide={this.handleClose}>

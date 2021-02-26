@@ -105,7 +105,7 @@ export default class Manage_Plans extends Component {
     <>
     <body class="fixed-navbar">
       <div class="page-wrapper">
-       <Menubar/>
+       <Menubar name="MPL"/>
        <div class="content-wrapper">
        <div class="page-content fade-in-up">
       <Modal show={this.state.show} onHide={this.handleClose}>

@@ -64,7 +64,7 @@ export default class Admin_Profile extends Component {
     return (
         <body class="fixed-navbar">
         <div class="page-wrapper">
-        <Menubar/>
+        <Menubar name="PRO"/>
         <div class="content-wrapper">
         <div class="page-content fade-in-up">
         <div class="registration-form">

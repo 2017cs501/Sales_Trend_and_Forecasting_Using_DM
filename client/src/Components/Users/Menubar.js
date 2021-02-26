@@ -32,11 +32,11 @@ export default class Menubar extends Component {
     <div>
         <header class="header">
             <div class="page-brand">
-                <Link class="link" to="/user_panel">
+                <a class="link" href="/user_panel">
                     <span class="brand">Sales 
                         <span class="brand-tip">&nbsp;Forecasting</span>
                     </span>
-                </Link>
+                </a>
             </div>
             <div class="flexbox flex-1">
                 <ul class="nav navbar-toolbar">
@@ -50,7 +50,7 @@ export default class Menubar extends Component {
                             <img src={process.env.PUBLIC_URL+"dist/assets/img/admin-avatar.png"} />
                     <span></span>{this.state.records.uname}<i class="fa fa-angle-down m-l-5"></i></a>
                         <ul class="dropdown-menu dropdown-menu-right">
-                            <Link class="dropdown-item" to="user_profile"><i class="fa fa-user"></i>Profile</Link>
+                            <a class="dropdown-item" href="user_profile"><i class="fa fa-user"></i>Profile</a>
                             <li class="dropdown-divider"></li>
                             <Link class="dropdown-item" to="/login" onClick={this.logOut}><i class="fa fa-power-off"></i>Logout</Link>
                         </ul>
@@ -69,90 +69,106 @@ export default class Menubar extends Component {
                 </div>
                 <ul class="side-menu metismenu">
                     <li>
-                        <Link class="active" to="/user_panel"><i class="sidebar-item-icon fa fa-th-large"></i>
+                        <a class="active" href="/user_panel"><i class="sidebar-item-icon fa fa-th-large"></i>
                             <span class="nav-label">Dashboard</span>
-                        </Link>
+                        </a>
                     </li>
                     <li class="heading">FEATURES</li>
                     
                     <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-cubes"></i>
-                            <span class="nav-label">Manage Pachages</span></Link>
+                        <a class={this.props.name==='PACK'?'active':''} href="/user_manage_packages"><i class="sidebar-item-icon fa fa-cubes"></i>
+                            <span class="nav-label">Manage Pachages</span>
+                        </a>
                     </li>
                     <li>
-                        <Link to="/upload_data"><i class="sidebar-item-icon fa fa-upload"></i>
-                            <span class="nav-label">Upload Data</span></Link>
+                        <a class={this.props.name==='UD'?'active':''} href="/upload_data"><i class="sidebar-item-icon fa fa-upload"></i>
+                            <span class="nav-label">Upload Data</span>
+                        </a>
                     </li>
                     <li class="heading"><span style={{textTransform:'uppercase'}}>{this.state.records.category}</span> PREDICTIONS</li>
                     {this.state.records.category=='Free'?
                     <>
                     <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
-                            <span class="nav-label">Sales Forecasting</span></Link>
+                        <a class={this.props.name=='sales'?'active':''} href="/sales_forecasting"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
+                            <span class="nav-label">Sales Forecasting</span>
+                        </a>
                     </li>
                     <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
-                            <span class="nav-label">Market Basket Analysis</span></Link>
+                        <a class={this.props.name==='AFZ'?'active':''} href="/market_basket_analysis"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
+                            <span class="nav-label">Market Basket Analysis</span>
+                        </a>
                     </li>
                     </>
                     :''}
                     {this.state.records.category=='Standard'?
                     <>
-                    <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
-                            <span class="nav-label">Sales Forecasting</span></Link>
+                   <li>
+                        <a class={this.props.name=='sales'?'active':''} href="/sales_forecasting"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
+                            <span class="nav-label">Sales Forecasting</span>
+                        </a>
                     </li>
                     <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
-                            <span class="nav-label">Market Basket Analysis</span></Link>
+                        <a class={this.props.name==='AFZ'?'active':''} href="/market_basket_analysis"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
+                            <span class="nav-label">Market Basket Analysis</span>
+                        </a>
                     </li>
                     <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-puzzle-piece"></i>
-                            <span class="nav-label">RFM Segmentation</span></Link>
+                        <a class={this.props.name==='RFM'?'active':''} href="/rfm_segmentation"><i class="sidebar-item-icon fa fa-puzzle-piece"></i>
+                            <span class="nav-label">RFM Segmentation</span>
+                        </a>
                     </li>
                     <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-heartbeat"></i>
-                            <span class="nav-label">Customer Lifetime Value
-                        </span></Link>
+                        <a class={this.props.name==='LTV'?'active':''} href="/lifetime_value_prediction"><i class="sidebar-item-icon fa fa-heartbeat"></i>
+                            <span class="nav-label">Customer Lifetime Value</span>
+                        </a>
                     </li>
                     </>:''}
                     {this.state.records.category=='Premium'?
                     <>
-                    <li>
-                        <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
-                            <span class="nav-label">Sales Forecasting</span></Link>
+                   <li>
+                        <a class={this.props.name=='sales'?'active':''} href="/sales_forecasting"><i class="sidebar-item-icon fa fa-fighter-jet"></i>
+                            <span class="nav-label">Sales Forecasting</span>
+                        </a>
                     </li>
                     <li>
-                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
-                        <span class="nav-label">Market Basket Analysis</span></Link>
-                </li>
+                        <a class={this.props.name==='AFZ'?'active':''} href="/market_basket_analysis"><i class="sidebar-item-icon fa fa-shopping-basket"></i>
+                            <span class="nav-label">Market Basket Analysis</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class={this.props.name==='RFM'?'active':''} href="/rfm_segmentation"><i class="sidebar-item-icon fa fa-puzzle-piece"></i>
+                            <span class="nav-label">RFM Segmentation</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class={this.props.name==='LTV'?'active':''} href="/lifetime_value_prediction"><i class="sidebar-item-icon fa fa-heartbeat"></i>
+                            <span class="nav-label">Customer Lifetime Value</span>
+                        </a>
+                    </li>
                 <li>
-                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-puzzle-piece"></i>
-                        <span class="nav-label">RFM Segmentation</span></Link>
-                </li>
-                <li>
-                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-heartbeat"></i>
-                        <span class="nav-label">Customer Lifetime Value
-                    </span></Link>
-                </li>
-                <li>
-                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-fast-backward"></i>
+                    <a class={this.props.name==='CHURN'?'active':''} href="/churn_analysis"><i class="sidebar-item-icon fa fa-fast-backward"></i>
                         <span class="nav-label">Churn Analysis
-                    </span></Link>
+                    </span></a>
                 </li>
                 <li>
-                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-gift"></i>
+                    <a class={this.props.name==='MEM'?'active':''} href="/market_responce_modeling"><i class="sidebar-item-icon fa fa-gift"></i>
                         <span class="nav-label">Responce Modeling
-                    </span></Link>
+                    </span></a>
                 </li>
                 <li>
-                    <Link to="/user_manage_packages"><i class="sidebar-item-icon fa fa-arrow-up"></i>
-                        <span class="nav-label">Uplift Modeling
-                    </span></Link>
+                    <a class={this.props.name==='UP'?'active':''} href="/uplift_modeling"><i class="sidebar-item-icon fa fa-arrow-up"></i>
+                        <span class="nav-label">Uplift Modeling</span>
+                    </a>
                 </li>
                 </>
                     :''}
                      <li class="heading">SETTINGS</li>
+                    <li>
+                        <a class={this.props.name==='MYP'?'active':''} href='/user_profile'>
+                        <i class="sidebar-item-icon fa fa-user"></i>
+                        <span class="nav-label">My Profile</span>
+                        </a>
+                    </li>
                     <li>
                         <Link to='/login' onClick={this.logOut}>
                         <i class="sidebar-item-icon fa fa-sign-out"></i>
