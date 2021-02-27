@@ -85,6 +85,11 @@ export default class Menubar extends Component {
                             <span class="nav-label">Upload Data</span>
                         </a>
                     </li>
+                    <li>
+                        <a class={this.props.name==='PRE'?'active':''} href="/preview_data"><i class="sidebar-item-icon fa fa-eye"></i>
+                            <span class="nav-label">Preview Data</span>
+                        </a>
+                    </li>
                     <li class="heading"><span style={{textTransform:'uppercase'}}>{this.state.records.category}</span> PREDICTIONS</li>
                     {this.state.records.category=='Free'?
                     <>

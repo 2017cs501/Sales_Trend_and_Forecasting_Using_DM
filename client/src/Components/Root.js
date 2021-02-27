@@ -28,6 +28,8 @@ import RFM_Segmentation from './Users/Predictions/RFM_Segmentation'
 import LTV_Prediction from './Users/Predictions/LTV_Prediction'
 import Responce_Modeling from './Users/Predictions/Responce_Modeling'
 import Uplift_Modeling from './Users/Predictions/Uplift_Modeling'
+import Change_Password from './Users/Change_Password'
+import Preview_Data from './Users/Preview_Data'
 
 export default class Root extends Component {
     render() {
@@ -54,6 +56,8 @@ export default class Root extends Component {
                     <Route path="/churn_analysis" exact><Churn_Analysis/></Route>
                     <Route path="/market_responce_modeling" exact><Responce_Modeling/></Route>
                     <Route path="/uplift_modeling" exact><Uplift_Modeling/></Route>
+                    <Route path="/change_password" exact><Change_Password/></Route>
+                    <Route path="/preview_data" exact><Preview_Data/></Route>
 
                     {/* For Admin Routes */}
                     

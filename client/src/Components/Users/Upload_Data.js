@@ -1,75 +1,79 @@
 import React, { Component } from 'react';
 import styles from '../../css/uploaddata.module.css';
 import axios from 'axios';
-import {Progress} from 'reactstrap';
 import {Redirect} from 'react-router-dom'
-import { ToastContainer, toast } from 'react-toastify';
 import Menubar from './Menubar'
 import Footer from './Footer'
 import Setting_Menu from './Setting_Menu'
 import 'react-toastify/dist/ReactToastify.css';
 import Cookies from 'js-cookie'
-import buffering from '../../images/buffering.gif' ;
+import buffering from '../../images/buffering.gif';
+import swal from 'sweetalert'
+import DataTable from 'react-data-table-component';
+import * as XLSX from 'xlsx';
 
 class Upload_Data extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            redirect:null,
-            selectedFile: null,
-            loaded:0,
-            uploaded: 0,
-            isLoading: true,
-            buffering: false
-        }
+  constructor(props){
+    super(props)
+    this.state = {
+        selectedFile: null,
+        uploaded: 0,
+        buffering: false,
+        file:''
     }
-    onClickHandler = (e) => {
-        e.preventDefault();   
+}
+onClickHandler = (e) => {
+  e.preventDefault()   
+    this.setState({
+        buffering:true
+    })
+    const form = new FormData();
+    form.append("file", this.state.selectedFile);
+    axios.post('/upload_data',form, {headers: {token: Cookies.get('token')}}, {
+            onUploadProgress: ProgressEvent => {
+            this.setState({
+                loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
+            })
+        }, 
+    })
+    .then(res=>{
+      console.log(res.data)
+      swal("Success!",res.data , "success");
+      document.getElementById('upload').reset();
+      this.setState({uploaded:1})
+    })
+    .then(data => {
         this.setState({
-            buffering:true
+            buffering:false
         })
-        const form = new FormData();
-        form.append("file", this.state.selectedFile);
-        axios.post('/upload_data',form, {headers: {token: Cookies.get('token')}}
-        //, {
-        //         onUploadProgress: ProgressEvent => {
-        //         this.setState({
-        //             loaded: (ProgressEvent.loaded / ProgressEvent.total*100),
-        //         })
-        //     }, 
-         )
-        // .then(response=>{
-        //     console.log(response)
-        // }).then(res => { 
-        //     toast.success('upload success')
-        //     this.setState({
-        //         buffering:false
-        //     })
-        // })
-        // .catch(err => { 
-        //     toast.error('upload fail')
-        //     this.setState({
-        //         buffering:false
-        //     })
-        // })
-    }
-    onChangeHandler = (e)=>{
+    })
+    .catch(err => { 
+      alert('Some Errors Try Again')
         this.setState({
-            selectedFile: e.target.files[0]
-          })
-    
-    }
+            buffering:false
+        })
+    })
+}
+onChangeHandler = event=>{
+    this.setState({
+        selectedFile: event.target.files[0],
+        loaded: 0,
+      })
 
-    // componentDidMount(){
-    //     axios.get('/api/upload/view',{headers: {token: Cookies.get('token')}})
-    //     .then(response=>{
-    //         console.log(response)
-    //         this.setState({
-    //             uploaded: response.data.uploaded,
-    //              isLoading: false
-    //         });    
-    //     });
-    // }
+}
+
+
+
+componentDidMount(){
+    axios.get('/check_is_upload',{headers: {token: Cookies.get('token')}})
+    .then(response=>{
+        console.log(response)
+        this.setState({
+            uploaded: response.data.data,
+            file:response.data.file
+        });    
+    });
+}
   render() 
   {
     if(!Cookies.get('token'))
@@ -91,31 +95,31 @@ class Upload_Data extends Component {
   <div className={'col-2'}></div>
   <div className={'col-8'}>
 
- <form onSubmit={(e)=>this.onClickHandler}>
+ 
   <div class="card">
   <div class="card-header"> 
   <div className={styles.first_heading}>Upload your data in .csv format</div></div>
+  <form onSubmit={(e)=>this.onClickHandler} id="upload">
   <div class="card-body">
       <div className="custom-file">
-        <input type="file" name="file" onChange={()=>this.onChangeHandler} required/>
-        <div className="form-group mt-2">
-        <Progress max="100" color="success" value={this.state.loaded}>{Math.round(this.state.loaded,2) }%</Progress>
-        </div>
+        <input type="file" name="file" onChange={this.onChangeHandler} accept=".csv" required/>
       </div>
   </div>
+  </form>
   <div class="card-footer">
   <button type="submit" className={'btn btn-primary btn-lg'} onClick={this.onClickHandler}>Upload Data</button>
   {
   this.state.buffering?  
   <img className={styles.loader} src={buffering} alt="Buffering"/>:null
   }
-   {/* { this.state.uploaded == true &&
+   { this.state.uploaded == true &&<>
                     <div className="alert alert-success mt-4" role="alert">
-                        We have stored your data
-                    </div>} */}
+                        <span style={{fontSize:17}}>We have already store your data</span>
+                    
+                        <a href={this.state.file} className={'btn btn-primary btn-sm'} >Download Data</a></div>
+                    </>}
   </div>
   </div>
-  </form>
 
 
   </div>
@@ -158,6 +162,7 @@ class Upload_Data extends Component {
 </div>
 </div>
  </div>
+ 
 <Footer/>
 </div>
 </div>

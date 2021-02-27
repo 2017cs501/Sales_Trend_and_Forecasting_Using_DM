@@ -20,8 +20,6 @@ export default class ResetPassword extends Component {
             console.log(data.data.data)
         })           
     }
-
-
     render() {
     return (
     <div>

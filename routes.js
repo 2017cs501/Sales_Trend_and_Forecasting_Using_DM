@@ -3,6 +3,11 @@ const app = express();
 const mongoose = require("mongoose");
 const {mongourl} = require('./config/keys');
 var jwt=require('jsonwebtoken')
+var nodemailer=require('nodemailer')
+var cors = require('cors');
+app.use(cors());
+var sales_forecasting=require('./Predictions/Sales_Forecasting')
+
 mongoose.connect(mongourl,{useNewUrlParser:true,useUnifiedTopology: true});
 
 //Models Imports
@@ -147,15 +152,48 @@ app.get('/get-data',(req,res)=>{
     console.log(req.body.email)
     UserRegistrationModel.findOne({email:req.body.email})
     .then((data)=>{
-        if(data)
-        {
-            res.send({data:'please check your email to reset your password'})
-            // res.send({message:'please check your email to reset your password'});
-        }
-        else
-        {
-            res.send({data:'This email not exists in out database.'})
-        }
+    if(data)
+    {   
+        console.log('data found')
+    async function main() {
+    let transporter = nodemailer.createTransport({
+       host: "smtp.gmail.com",
+       port: 465,
+       secure: true, // true for 465, false for other ports
+       auth: {
+         user: 'afzaaljavaid47@gmail.com',
+         pass: 'afzaal475456',
+       },
+     });
+     var currentDateTime = new Date();
+     let info = await transporter.sendMail({
+       from: '"Afzaal Javaid" <afzaaljavaid47@gmail.com>',
+       to: data.email,
+       subject: "Password Reset", 
+    //   text: "Hello world?", 
+       html: "<h1>Welcome To 'Sales Trend & Forecasting Using Data Mining Techniques' ! </h1><p>\
+       <h3>Hello "+data.fname+"</h3>\
+       If You are requested to reset your password then click on below link<br/>\
+       <a href='http://localhost:3000/change_password/"+data._id+"'>Click On This Link</a>\
+       </p>",
+     });
+     if(info.messageId)
+     {
+        res.send({data:'please check your email to reset your password'})
+        console.log('please check your email to reset your password')
+    }
+     else
+     {
+       res.send({data:'Some errors, try again!'})
+       console.log('Some errors, try again!')
+     }
+   }
+   main().catch(console.error);   
+    }
+    else
+    {
+        res.send({data:'This email not exists in out database.'})
+    }
     })
 })
 
@@ -374,39 +412,63 @@ var upload = multer({ storage: storage,  limits: { fileSize: 100 * 1024 * 1024  
      var decoded=jwt.verify(token, 'jwtPrivateKey')
      UserRegistrationModel.findOne({_id:decoded._id})
      .then(data=>{
-         if(data)
-         {
-            console.log('data found')
-            userID=data._id;
-            // upload(req, res, function (err) {
-            //     if (err instanceof multer.MulterError) {
-            //         return res.status(500).json(err)
-            //     }
-            
-            //     else if (!req.file) {
-            //         return res.status(500).json(err)
-            //     }
-            //     else if (err) {
-            //          return res.status(500).json(err)
-            //      }
+     if(data)
+      {
+        console.log('data found')
+        userID=data._id;
+        upload(req, res, function (err) {
+            if (err instanceof multer.MulterError) {
+                return res.status(500).json(err)
+            } else if (err) {
+                return res.status(500).json(err)
+            }
+             return res.send('File Uploaded Successfully')
+         })
       var dir = `\\excel_files\\${userID}`;
       if (!fs.existsSync(__dirname+dir)){
           fs.mkdirSync(__dirname+dir);
         }
-            
-        // Customer.updateOne({_id:userID},{DataUploaded: true },function(err, res) {
-            //     if (err) {
-            //         throw err
-            //         console.log(err);
-            //     }   
-            // });
-           //return res.status(200).send(req.file)
-        
-        // });
-         }
+        UserRegistrationModel.updateOne({_id:userID},{DataUploaded: true },function(err, res) {
+            if (err) {
+                throw err
+                console.log(err);
+            }   
+        });
+      }
      })
-
  })
+
+ app.post('/update_reset_password',function(req, res){
+    UserRegistrationModel.findOne({ _id: req.body.id }, function (errorFind, userData) {
+        if(userData._id==req.body.id)
+        {
+            UserRegistrationModel.updateOne({_id:userData._id},{password:req.body.password})
+            .then(data=>{
+                res.send('Password reset successfully!')
+            })
+        }
+        else if(errorFind)
+        {
+            res.send('Some errors try again')
+        }
+    }
+    );
+})
+
+app.get('/check_is_upload',(req,res)=>{
+    var token=req.headers.token
+    var decoded=jwt.verify(token, 'jwtPrivateKey')
+    UserRegistrationModel.findOne({_id:decoded._id})
+    .then(data=>{
+    if(data)
+     {
+       res.send({data:data.DataUploaded,file:'http://localhost:5000/public/'+data._id +'.csv'})  
+       console.log('localhost:5000/public/'+data._id +'.csv')     
+     }
+    })
+})
+
+
  app.post('/sent-data',(req,res)=>{
      var usersData=new UsersModel({
          uname:req.body.uname,

@@ -28,7 +28,11 @@ const UserRegistrationShema=new mongoose.Schema({
     category:{
         type:String,
         default:'Free'
-    }
+    },
+    DataUploaded:{
+        type:Boolean,
+        default: false
+    },
 })
 var UserRegistrationModel=mongoose.model('users',UserRegistrationShema)
 module.exports=UserRegistrationModel
