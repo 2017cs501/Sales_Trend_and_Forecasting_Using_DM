@@ -30,6 +30,7 @@ import Responce_Modeling from './Users/Predictions/Responce_Modeling'
 import Uplift_Modeling from './Users/Predictions/Uplift_Modeling'
 import Change_Password from './Users/Change_Password'
 import Preview_Data from './Users/Preview_Data'
+import Admin_Change_Password from './Admin/Admin_Change_Password'
 
 export default class Root extends Component {
     render() {
@@ -56,7 +57,11 @@ export default class Root extends Component {
                     <Route path="/churn_analysis" exact><Churn_Analysis/></Route>
                     <Route path="/market_responce_modeling" exact><Responce_Modeling/></Route>
                     <Route path="/uplift_modeling" exact><Uplift_Modeling/></Route>
-                    <Route path="/change_password" exact><Change_Password/></Route>
+                    <Route exact path="/change_password/:id" 
+                        render={({ match }) => (
+                            <Change_Password match={match} />
+                        )} 
+                    />
                     <Route path="/preview_data" exact><Preview_Data/></Route>
 
                     {/* For Admin Routes */}
@@ -72,6 +77,12 @@ export default class Root extends Component {
                     <Route path="/manage_plans" exact><Manage_Plans/></Route>
                     <Route path="/messages" exact><Messages/></Route>
                     <Route path="/notifications" exact><Notifications/></Route>
+                    <Route exact path="/admin_change_password/:id" 
+                        render={({ match }) => (
+                            <Admin_Change_Password match={match} />
+                        )} 
+                    />
+
                 </Switch>
             </Router>  
             </>

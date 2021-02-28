@@ -56,7 +56,7 @@ data mining techniques.
             analysis of sales prediction by using latest and innovative tools & techniques. Furthermore, the
             store owners will get a visual representation of the results which can help in decision making.
             </p>
-            <a href="#" class="btn-learn-more">Learn More</a>
+            <a href="assets/srs/Final_Deliverable_Details.pdf" target="_blank" class="btn-learn-more">Learn More</a>
           </div>
         </div>
       </div>

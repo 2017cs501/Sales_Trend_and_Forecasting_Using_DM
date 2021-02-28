@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
-import Navbar from './Navbar'
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import {Link} from 'react-router-dom'
 import {Redirect} from 'react-router-dom'
 
-export default class Change_Password extends Component {
+export default class Admin_Change_Password extends Component {
     constructor(props){
     super(props);
     this.state={
@@ -37,12 +36,12 @@ export default class Change_Password extends Component {
     }
     else
     {
-    axios.post('/update_reset_password',this.state)
+    axios.post('/update_admin_reset_password',this.state)
     .then(responce=>
     {
     alert(responce.data.data)
-    Cookies.set('token', responce.data.tokens,{ expires: 7 })
-    this.setState({redirect:"/user_panel"})
+    Cookies.set('adtoken', responce.data.tokens,{ expires: 7 })
+    this.setState({redirect:"/admin_panel"})
     })
       }
     }
@@ -58,7 +57,7 @@ export default class Change_Password extends Component {
     <div class="registration-form" style={{padding:'70px'}}>
         <form onSubmit={(e)=>this.formSubmit(e)}>
         <div class="form-group" style={{textAlign:'center',color:'#37517E',paddingBottom:'20px'}}>
-            <h2>Customer Reset Password Form</h2>
+            <h2>Admin Reset Password Form</h2>
             </div>
             <div class="form-group">
                 <input type="password" class="form-control item" name="password" placeholder="Password" onChange={(e)=>this.onInputChange(e)} required/>

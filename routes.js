@@ -197,6 +197,57 @@ app.get('/get-data',(req,res)=>{
     })
 })
 
+
+app.post('/admin_password_reset',(req,res)=>{
+    console.log(req.body.email)
+    AdminRegistration.findOne({email:req.body.email})
+    .then((data)=>{
+    if(data)
+    {   
+        console.log('data found')
+    async function main() {
+    let transporter = nodemailer.createTransport({
+       host: "smtp.gmail.com",
+       port: 465,
+       secure: true, // true for 465, false for other ports
+       auth: {
+         user: 'afzaaljavaid47@gmail.com',
+         pass: 'afzaal475456',
+       },
+     });
+     var currentDateTime = new Date();
+     let info = await transporter.sendMail({
+       from: '"Afzaal Javaid" <afzaaljavaid47@gmail.com>',
+       to: data.email,
+       subject: "Password Reset", 
+    //   text: "Hello world?", 
+       html: "<h1>Welcome To 'Sales Trend & Forecasting Using Data Mining Techniques' ! </h1><p>\
+       <h3>Hello "+data.fname+"</h3>\
+       If You are requested to reset your password then click on below link<br/>\
+       <a href='http://localhost:3000/admin_change_password/"+data._id+"'>Click On This Link</a>\
+       </p>",
+     });
+     if(info.messageId)
+     {
+        res.send({data:'please check your email to reset your password'})
+        console.log('please check your email to reset your password')
+    }
+     else
+     {
+       res.send({data:'Some errors, try again!'})
+       console.log('Some errors, try again!')
+     }
+   }
+   main().catch(console.error);   
+    }
+    else
+    {
+        res.send({data:'This email not exists in out database.'})
+    }
+    })
+})
+
+
 app.post('/update_plan',(req,res)=>{
     Plan_Model.updateOne({_id:req.body.id},{$set:{pname:req.body.ppname,pprice:req.body.ppprice}})
 })
@@ -442,9 +493,11 @@ var upload = multer({ storage: storage,  limits: { fileSize: 100 * 1024 * 1024  
     UserRegistrationModel.findOne({ _id: req.body.id }, function (errorFind, userData) {
         if(userData._id==req.body.id)
         {
+            var token
+            token=jwt.sign({ _id:userData._id },'jwtPrivateKey');
             UserRegistrationModel.updateOne({_id:userData._id},{password:req.body.password})
             .then(data=>{
-                res.send('Password reset successfully!')
+                res.send({data:'Password reset successfully!',tokens:token})
             })
         }
         else if(errorFind)
@@ -454,6 +507,26 @@ var upload = multer({ storage: storage,  limits: { fileSize: 100 * 1024 * 1024  
     }
     );
 })
+
+app.post('/update_admin_reset_password',function(req, res){
+      AdminRegistration.findOne({ _id: req.body.id }, function (errorFind, userData) {
+        if(userData._id==req.body.id)
+        {
+            var token
+            token=jwt.sign({ _id:userData._id },'jwtPrivateKey');
+       AdminRegistration.updateOne({_id:userData._id},{password:req.body.password})
+            .then(data=>{
+                res.send({data:'Password reset successfully!',tokens:token})
+            })
+        }
+        else if(errorFind)
+        {
+            res.send('Some errors try again')
+        }
+    }
+    );
+})
+
 
 app.get('/check_is_upload',(req,res)=>{
     var token=req.headers.token

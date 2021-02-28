@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from '../Users/Navbar'
 import {Link} from 'react-router-dom'
+import axios from 'axios'
 export default class ResetAdminPassword extends Component {
     state={
         email:''
@@ -11,7 +12,12 @@ export default class ResetAdminPassword extends Component {
         })
     }
     formSubmit=(e)=>{
-        e.preventDefault();
+        e.preventDefault()
+        axios.post('/admin_password_reset',this.state)
+        .then(data=>{
+            alert(data.data.data)
+            console.log(data.data.data)
+        })  
     }
     render() {
     return (
