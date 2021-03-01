@@ -5,9 +5,11 @@ import pandas as pd
 from sklearn.cluster import KMeans
 import sys
 import os
+import os
+id=sys.argv[1]
 
 #read excel file in df
-df = pd.read_csv("../Sales_Data.csv", encoding="ISO-8859-1")
+df = pd.read_csv(f"./public/{id}.csv", encoding="ISO-8859-1")
 df.columns = map(str.lower, df.columns)
 
 try:
@@ -114,7 +116,7 @@ user_unique_id.loc[user_unique_id['OverallScore']>2,'Segment'] = 'Mid-Value'
 user_unique_id.loc[user_unique_id['OverallScore']>4,'Segment'] = 'High-Value'
 
 #download file
-user_unique_id.filter(['customerid', 'Segment']).reset_index(drop=True).to_csv('LTValue.csv')
+user_unique_id.filter(['customerid', 'Segment']).reset_index(drop=True).to_csv(f"./excel_files/{id}/LTValue.csv")
 
 
 print("Customer LifeTime Value executed successfully")

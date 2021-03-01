@@ -6,7 +6,12 @@ var cors = require('cors');
 var path=require('path')
 app.use(cors());
 //serving static files
+
 var sales_forecasting=require('./Predictions/Sales_Forecasting')
+var market_basket=require('./Predictions/Market_Basket')
+var rfm=require('./Predictions/RFM')
+var ltv=require('./Predictions/LTV')
+
 app.use(express.static('public'))
 app.use('/public',express.static('public'))
 app.use('/excel_files',express.static('excel_files'))
@@ -19,7 +24,12 @@ app.use(bodyParser.json())
 
 // import routes
 require('./routes')(app);
+
 app.use('/prediction/sales_forecasting',sales_forecasting)
+app.use('/prediction/market_basket',market_basket)
+app.use('/prediction/rfm',rfm)
+app.use('/prediction/ltv',ltv)
+
 app.set('view engine','ejs')
 
 app.listen(port,()=>{

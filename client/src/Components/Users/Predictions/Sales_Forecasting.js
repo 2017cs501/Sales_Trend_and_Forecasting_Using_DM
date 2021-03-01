@@ -11,14 +11,15 @@ import buffering from '../../../images/buffering.gif';
 import DataTable from 'react-data-table-component';
 import * as XLSX from 'xlsx';
 
-class Preview_Data extends Component {
+class Sales_Forecasting extends Component {
   constructor(props){
     super(props)
     this.state = {
         uploaded: 0,
         buffering: false,
-        file:'',
-        result:''
+        file:null,
+        result:'',
+        trend:[]
     }
 }
 getdata(){
@@ -26,7 +27,8 @@ getdata(){
     .then(response=>{
         console.log(response)
         this.setState({
-        result:response.data.data,
+        trend:response.data.data1,
+        result:response.data.data2,
         file:response.data.file,
         buffering:false    
         });    
@@ -67,7 +69,7 @@ componentDidMount(){
         this.state.buffering?
         <>  
         <div style={{textAlign:'center',marginTop:40}}>
-        <h3 class="text-danger" style={{textAlign:'center',marginTop:20}}>Sales Forecasting Running Plaese Wait </h3>
+        <h3 class="text-danger" style={{textAlign:'center',marginTop:20}}>Sales Forecasting Running Please Wait..... </h3>
         <img className={styles.loader} style={{flex:1,justifyContent:'center',alignItems:'center'}} src={buffering} alt="Buffering"/>
         </div>
         </>
@@ -86,9 +88,9 @@ componentDidMount(){
         }
       {this.state.result?<>
         <div style={{textAlign:'center'}}>
-      <h2 class="text-success" style={{textAlign:'center',marginTop:40}}>
-        {this.state.result} !</h2>
-        <a href={this.state.file} class={'btn btn-primary btn-sm'}>Download Predcted File</a>
+      <h2  class={this.state.file?"text-success":"text-danger"} style={{textAlign:'center',marginTop:40}}>
+        {this.state.result} {JSON.stringify(this.state.trend)}!</h2>
+        {this.state.file? <a href={this.state.file} class={'btn btn-primary btn-sm'}>Download Predcted File</a>:''}
       </div>
       </>:''}
 <Footer/>
@@ -100,4 +102,5 @@ componentDidMount(){
     );
   };
 }
-export default Preview_Data;
+
+export default Sales_Forecasting;

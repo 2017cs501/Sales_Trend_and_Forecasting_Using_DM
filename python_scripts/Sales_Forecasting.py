@@ -1,6 +1,5 @@
 import pandas as pd
 from fbprophet import Prophet
-from fbprophet.plot import plot_plotly, plot_components_plotly
 import sys
 id=sys.argv[1]
 df = pd.read_csv(f"./public/{id}.csv", encoding="ISO-8859-1")
