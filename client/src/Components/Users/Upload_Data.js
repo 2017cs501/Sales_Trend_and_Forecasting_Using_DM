@@ -114,14 +114,12 @@ componentDidMount(){
   }
    { this.state.uploaded == true &&<>
                     <div className="alert alert-success mt-4" role="alert">
-                        <span style={{fontSize:17}}>We have already store your data</span>
-                    
-                        <a href={this.state.file} className={'btn btn-primary btn-sm'} >Download Data</a></div>
+                        <span style={{fontSize:17}}>We have already store your data</span>                  
+                        <a href={this.state.file} className={'btn btn-primary btn-sm'} >Download Data</a>
+                        <a href='/preview_data' className={'btn btn-primary btn-sm'} >Preview Data</a></div>
                     </>}
   </div>
   </div>
-
-
   </div>
   <div className={'col-2'}></div>
   </div>

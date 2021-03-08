@@ -6,6 +6,9 @@ var jwt=require('jsonwebtoken')
 var nodemailer=require('nodemailer')
 var cors = require('cors');
 app.use(cors());
+var fs=require('fs')
+var parse=require('csv-parse')
+
 var sales_forecasting=require('./Predictions/Sales_Forecasting')
 
 mongoose.connect(mongourl,{useNewUrlParser:true,useUnifiedTopology: true});
@@ -554,4 +557,29 @@ app.get('/check_is_upload',(req,res)=>{
      })
     res.send(JSON.stringify(req.body))
 })
+app.get('/preview_data', (req, res)=> { 
+    csvData=[]
+    var token=req.headers.token
+    var decoded=jwt.verify(token, 'jwtPrivateKey')
+    UserRegistrationModel.findOne({_id:decoded._id})
+    .then(data=>{
+    if(data)
+     {
+    fs.createReadStream(`./public/${data._id}.csv`)
+    .pipe(
+        parse({
+            delimiter:','
+        })
+    )
+    .on('data',function(dataRow){
+        csvData.push(dataRow)
+    })
+    .on('end',function(){
+        console.log(csvData)
+        res.status(200).json({data:csvData})
+    })
+}
+})
+})
+
 }
